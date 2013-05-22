@@ -23,5 +23,15 @@ def grabhtml(sectorpage):
     f.write(a3)
     f.close()
     # this worx damn well as of last writing
-grabhtml('http://www.miequitynetwork.org/tags/arts')
+
+
+
+# build a dictionary [tag] [site]
+# loop thru with a grabhtml call!
+
+dict = {'arts':'http://www.miequitynetwork.org/tags/arts',
+        'business':'http://www.mie
+
+grabhtml('http://www.miequitynetwork.org/forums/arts-humanities')
+
 
