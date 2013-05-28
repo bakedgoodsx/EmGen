@@ -18,14 +18,14 @@ def cleanup(strung):
     s2 = strung.replace("('","")
     s3 = s2.replace("',)","")
     s4 = s3.strip('[]')
-    s5 = s4.replace("' ,", ",")
+    s5 = s4.replace(" ,", ",")
     return s5 
 
 
 def grabelist(sector):
     con = None
     try:
-        con = lite.connect("C:\\Users\\eblincow\\Dropbox\\joblich\eqnet.db")
+        con = lite.connect("C:\\Users\\eblincow\\Dropbox\\joblich\\eq.db")
         cur = con.cursor()
     #    cur.execute("select Email from eq where Sector like " + sector + "%")
         cur.execute("select Email from eq where Sector like '" + sector + "%';")
@@ -47,11 +47,8 @@ def grabelist(sector):
 
 
 # enter interactive console menu for grabbing emails.
-
-alfa = "\n--*Welcome to Erix Email List Generation Program (EmGen)*-- \n Please enter the first letter (except Foundations/Faith Communities) of the sector for which you want an email list.\n The email list will be copied to the clipboard and ready to be put into Microsoft Outlook.\n"
-
-breto = "*A*rts and Humanities\n*B*usiness\n*E*ducation\n*Fa*ith Communities\n*Fo*undations\n*G*overnment\n*H*ealthcare\n*J*udicial System\n*N*on-Profit\n \n Please Enter your selection now: \n"
-
-aeol = input(alfa + breto)
-
-grabelist(aeol)
+def kickstart():
+    alfa = "\n--Please enter the first letter (except Foundations/Faith Communities) of the sector for which you want an email list.\n The email list will be copied to the clipboard and ready to be put into Microsoft Outlook.\n"
+    breto = "*A*rts and Humanities\n*B*usiness\n*E*ducation\n*Fa*ith Communities\n*Fo*undations\n*G*overnment\n*H*ealthcare\n*J*udicial System\n*N*on-Profit\n \n Please Enter your selection now: \n"
+    aeol = input(alfa + breto)
+    grabelist(aeol)

@@ -4,11 +4,11 @@ import urllib.request
 #html = response.read()
 
 
-def grabhtml(sectorpage):
+def grabhtml(sect,sectorpage):
     "This grabs the html from the page for each sector"
     response = urllib.request.urlopen(sectorpage)
     html = response.read()
-    f = open('test.html','w')
+    f = open(sect + '.html','w')
     ae = str(html)
     af = ae.replace("\\xc2\\xa0"," ")
 
@@ -20,6 +20,7 @@ def grabhtml(sectorpage):
     a3 = a2.replace('<a href="/content/','<a href="http://www.miequitynetwork.org/content/')
     # the string a3 is now the formatted HTML for the email.
 
+    print("We are now grabbing content from " + sectorpage + "\n and saving it as " + sect + ".html\n")
     f.write(a3)
     f.close()
     # this worx damn well as of last writing
@@ -28,10 +29,12 @@ def grabhtml(sectorpage):
 
 # build a dictionary [tag] [site]
 # loop thru with a grabhtml call!
-
-dict = {'arts':'http://www.miequitynetwork.org/tags/arts',
-        'business':'http://www.mie
-
-grabhtml('http://www.miequitynetwork.org/forums/arts-humanities')
-
+def kickstart():
+        dict = {'arts-humanities','business','education','faith-communities','judicial-system','youth','government','foundations','non-profit','healthcare'}
+     
+        
+        for i in dict:
+            j = "http://www.miequitynetwork.org/sector/" + i
+            grabhtml(i,j)
+        print("\nCongratulations! Sector-HTML-grabbin' has succeeded successfully!\n")
 
